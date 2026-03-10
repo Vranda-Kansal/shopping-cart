@@ -1,6 +1,25 @@
 "use client";
 
 export default function Product({ product }) {
+  function handleAddToCart() {
+    const items = JSON.parse(localStorage.getItem("items")) || {};
+    let total = JSON.parse(localStorage.getItem("total")) || 0;
+
+    total += product.price;
+
+    if (product.id in items) {
+      items[product.id].quantity += 1;
+    } else {
+      items[product.id] = {
+        product: product,
+        quantity: 1,
+      };
+    }
+
+    localStorage.setItem("items", JSON.stringify(items));
+    localStorage.setItem("total", total);
+  }
+
   return (
     <section className="p-2">
       <section className="bg-[#f7f7f7] max-w-full">
@@ -52,7 +71,10 @@ export default function Product({ product }) {
             <div className="text-black font-medium text-md">
               ${product.price}
             </div>
-            <button className="bg-[#e4f1cc] border-green-400 border-2 text-green-500 font-semibold p-1 rounded-sm cursor-pointer">
+            <button
+              className="bg-[#e4f1cc] border-green-400 border-2 text-green-500 font-semibold p-1 rounded-sm cursor-pointer"
+              onClick={handleAddToCart}
+            >
               Add
             </button>
           </div>
