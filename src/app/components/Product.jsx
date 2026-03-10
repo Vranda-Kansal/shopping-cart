@@ -4,7 +4,23 @@ export default function Product({ product }) {
   return (
     <section className="p-2">
       <section className="bg-[#f7f7f7] max-w-full">
-        <span>{product.discountPercentage}</span>
+        <div className="relative">
+          <svg
+            width="42"
+            height="38"
+            viewBox="0 0 29 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M28.9499 0C28.3999 0 27.9361 1.44696 27.9361 2.60412V27.9718L24.5708 25.9718L21.2055 27.9718L17.8402 25.9718L14.4749 27.9718L11.1096 25.9718L7.74436 27.9718L4.37907 25.9718L1.01378 27.9718V2.6037C1.01378 1.44655 0.549931 0 0 0H28.9499Z"
+              fill="#256fef"
+            ></path>
+          </svg>
+          <div className="absolute top-1 text-xs text-white font-bold left-2">
+            <div>{Math.floor(product.discountPercentage)}%</div> <div>OFF</div>
+          </div>
+        </div>
         <img src={product.thumbnail} alt="product Image" />
       </section>
       <section>
@@ -36,7 +52,7 @@ export default function Product({ product }) {
             <div className="text-black font-medium text-md">
               ${product.price}
             </div>
-            <button className="bg-[#e4f1cc] border-green-400 border-2 text-green-500 font-semibold p-1 rounded-sm">
+            <button className="bg-[#e4f1cc] border-green-400 border-2 text-green-500 font-semibold p-1 rounded-sm cursor-pointer">
               Add
             </button>
           </div>
