@@ -17,17 +17,21 @@ export default function AddToCart({
     const cartAllItems = JSON.parse(localStorage.getItem("items"));
     const total = JSON.parse(localStorage.getItem("total"));
     const items = cartAllItems && Object.values(cartAllItems);
-    console.log(items);
+    // console.log(items);
     setAllCartItems(items);
     setCartTotal(total);
   }, []);
   return (
     <>
       {showCart ? (
-        <UICart cartItems={allCartItems} total={cartTotal} />
+        <UICart
+          cartItems={allCartItems}
+          total={cartTotal}
+          setShowCart={setShowCart}
+        />
       ) : (
         <button
-          className="border-2 border-green-500 bg-green-50 p-2"
+          className="border-2 border-green-500 bg-green-50 p-2 cursor-pointer"
           onClick={handleToggle}
         >
           <Image
