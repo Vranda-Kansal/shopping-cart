@@ -1,6 +1,6 @@
 "use client";
 
-export default function Product({ product }) {
+export default function Product({ product, setAllCartItems, setCartTotal }) {
   function handleAddToCart() {
     const items = JSON.parse(localStorage.getItem("items")) || {};
     let total = JSON.parse(localStorage.getItem("total")) || 0;
@@ -15,7 +15,8 @@ export default function Product({ product }) {
         quantity: 1,
       };
     }
-
+    setAllCartItems(Object.values(items));
+    setCartTotal(total);
     localStorage.setItem("items", JSON.stringify(items));
     localStorage.setItem("total", total);
   }
