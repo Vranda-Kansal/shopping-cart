@@ -1,13 +1,15 @@
 import Image from "next/image";
 
-export default function UICart({ cartItems, total, setShowCart }) {
+export default function UICart({ cartItems, total, setShowCart, className }) {
   console.log(cartItems);
   function handleToggle() {
     setShowCart((prev) => !prev);
   }
   return (
-    <div className="md:max-w-[40%] p-4 m-2">
-      <section className="flex gap-2">
+    <div
+      className={`${className} md:max-w-[40%] p-4 bg-white flex flex-col h-screen`}
+    >
+      <section className="flex gap-2 pb-2">
         <Image
           src="/arrow.png"
           alt="back to products"
@@ -18,11 +20,11 @@ export default function UICart({ cartItems, total, setShowCart }) {
         />
         <span className="font-semibold">My Cart</span>
       </section>
-      <section className="bg-[#f7f7f7] p-2 mmax-w-full">
+      <section className="bg-[#f7f7f7] p-1 max-w-full flex-1 overflow-y-scroll">
         {cartItems.map((item) => (
           <section
             key={item.product.id}
-            className="flex items-center bg-white rounded-sm m-1"
+            className="flex items-center bg-white rounded-sm m-1 p-1.5"
           >
             <Image
               src={item.product.thumbnail}
@@ -42,7 +44,7 @@ export default function UICart({ cartItems, total, setShowCart }) {
           </section>
         ))}
       </section>
-      <section className="w-full bg-green-600 text-white font-semibold p-2 flex justify-between text-sm rounded-sm">
+      <section className="w-full bg-green-600 text-white font-semibold p-2 flex justify-between text-sm rounded-sm mt-auto">
         <div>
           <div>${total.toFixed(2)}</div>
           <div>Grand Total</div>

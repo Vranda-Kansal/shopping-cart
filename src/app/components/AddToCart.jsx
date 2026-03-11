@@ -8,8 +8,9 @@ export default function AddToCart({
   allCartItems,
   setCartTotal,
   cartTotal,
+  showCart,
+  setShowCart,
 }) {
-  const [showCart, setShowCart] = useState(false);
   function handleToggle() {
     setShowCart((prev) => !prev);
   }
@@ -23,25 +24,17 @@ export default function AddToCart({
   }, []);
   return (
     <>
-      {showCart ? (
-        <UICart
-          cartItems={allCartItems}
-          total={cartTotal}
-          setShowCart={setShowCart}
+      <button
+        className="border-2 border-green-500 bg-green-50 p-2 cursor-pointer"
+        onClick={handleToggle}
+      >
+        <Image
+          src="/grocery-store.png"
+          alt="addtoCart"
+          width="20"
+          height="20"
         />
-      ) : (
-        <button
-          className="border-2 border-green-500 bg-green-50 p-2 cursor-pointer"
-          onClick={handleToggle}
-        >
-          <Image
-            src="/grocery-store.png"
-            alt="addtoCart"
-            width="20"
-            height="20"
-          />
-        </button>
-      )}
+      </button>
     </>
   );
 }
